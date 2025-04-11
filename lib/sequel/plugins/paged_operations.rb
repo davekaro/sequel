@@ -60,7 +60,7 @@ module Sequel
     #   # ...
     #   # SELECT id FROM albums WHERE ((name <= 'M') AND (id >= 12345)) ORDER BY id LIMIT 1 OFFSET 4
     #   # UPDATE albums SET x = x + 1 WHERE ((name <= 'M') AND (id >= 12345))
-    # 
+    #
     # You should avoid using +paged_update+ or +paged_datasets+
     # with updates that modify the primary key, as such usage is
     # not supported by this plugin.
@@ -159,7 +159,7 @@ module Sequel
 
           case pk = model.primary_key
           when Symbol
-            Sequel.identifier(pk)
+            Sequel[model.table_name][pk]
           when Array
             raise Error, "cannot use #{meth} on a model with a composite primary key"
           else
